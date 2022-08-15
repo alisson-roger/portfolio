@@ -1,13 +1,14 @@
 import './contact.css';
-import Phone from '../../img/phone.png';
-import Email from '../../img/email.png';
-import Address from '../../img/address.png';
-import { useRef, useState } from 'react';
+
+import { useContext, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { ThemeContext } from '../../context';
 
 const Contact = () => {
   const formRef = useRef();
   const [done, setDone] = useState(false);
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,14 +39,28 @@ const Contact = () => {
             <h1 className="c-title">Let's discuss your project</h1>
             <div className="c-info">
               <div className="c-info-item">
-                <img src={Phone} alt="" className="c-icon" />+ 1 1234 556 75
+                <img
+                  src="https://raw.githubusercontent.com/safak/youtube/react-portfolio-website/src/img/phone.png"
+                  alt=""
+                  className="c-icon"
+                />
+                + 1 1234 556 75
               </div>
               <div className="c-info-item">
-                <img src={Email} alt="" className="c-icon" />
+                <img
+                  src="https://raw.githubusercontent.com/safak/youtube/react-portfolio-website/src/img/email.png"
+                  alt=""
+                  className="c-icon"
+                />
                 contact@gmail.com
               </div>
               <div className="c-info-item">
-                <img src={Address} alt="" className="c-icon" /> Far - Far Away
+                <img
+                  src="https://raw.githubusercontent.com/safak/youtube/react-portfolio-website/src/img/address.png"
+                  alt=""
+                  className="c-icon"
+                />{' '}
+                Far - Far Away
               </div>
             </div>
           </div>
@@ -55,10 +70,30 @@ const Contact = () => {
               ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
             <form ref={formRef} onSubmit={handleSubmit}>
-              <input type="text" placeholder="Name" name="user_name" />
-              <input type="text" placeholder="Subject" name="user_subject" />
-              <input type="Email" placeholder="Name" name="user_email" />
-              <textarea rows="5" placeholder="Message" name="message" />
+              <input
+                style={{ backgroundColor: darkMode && '#333' }}
+                type="text"
+                placeholder="Name"
+                name="user_name"
+              />
+              <input
+                style={{ backgroundColor: darkMode && '#333' }}
+                type="text"
+                placeholder="Subject"
+                name="user_subject"
+              />
+              <input
+                style={{ backgroundColor: darkMode && '#333' }}
+                type="Email"
+                placeholder="Name"
+                name="user_email"
+              />
+              <textarea
+                style={{ backgroundColor: darkMode && '#333' }}
+                rows="5"
+                placeholder="Message"
+                name="message"
+              />
               <button>Submit</button>
               {done && 'Thank you'}
             </form>
